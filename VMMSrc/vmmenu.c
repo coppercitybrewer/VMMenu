@@ -314,6 +314,7 @@ int main(int argc, char *argv[])
    midway         = make_midway();
    vectrex        = make_vectrex();
 
+   #ifdef USBDVG
    if (autostart)
    {
        int autostart_allowed = 1;
@@ -336,6 +337,7 @@ int main(int argc, char *argv[])
             RunGame(autogame);
         }
    }
+   #endif
    // If we exit the auto started game, or aren't autostarting, lets go with the menu intro and loop
 
    /*** At this point we have a blank screen. Run an intro with the mame logo ***/
