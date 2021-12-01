@@ -11,7 +11,7 @@ Follow install instructions.
 Download an XP vdi image for VirtualBox
 
 Click New
-Name the virutal machine
+Name the virtual machine
 
 Type: Microsoft Windows
 
@@ -29,7 +29,7 @@ Select use an existing virtual hard disk file, and select the one the one that w
 Install the Windows XP guest additions
 Devices>Insert Guest Additions CD image...
 
-This is now mounted and can be found in My Computer, double click on this and select Next and
+This is now mounted and can be found in My Computer, double click on this and select Next
 
 Devices>Shared Folders>Shared Folders Settings
 Select Machine Folders

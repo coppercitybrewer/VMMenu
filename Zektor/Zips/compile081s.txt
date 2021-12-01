@@ -1,0 +1,88 @@
+Instructions on compiling DVMAME.EXE
+
+All the following files can be found on the original ZVG utilities
+disk in the '\Zips' directory. They are also available from their original
+sources:
+
+   http://www.mame.net/zips/djgpp-gcc322.zip
+   http://www.zektor.com/zvg/downloads/djgpp-gcc322-zvg11a.zip
+
+   http://www.mame.net/zips/mame081s.zip
+   http://www.mame.net/zips/dmame81s.zip
+   http://www.zektor.com/zvg/downloads/dvm81s.zip
+   http://www.mame.net/zips/csdpmi5b.zip  (Only 'CWSDPMI.EXE' is needed)
+
+Start by installing DJGPP:
+
+   Unzip 'djgpp-gcc322.zip' into a temporary directory.
+
+   Unzip 'djgpp-gcc322-zvg11a.zip' into the same temporary directory,
+   allowing it to overwrite files.
+
+   From the above temporary directory type 'install'. This will setup
+   the GCC compiler and associated libraries needed for DOS MAME, include
+   the ZVG library. 
+   
+   You can now delete the temporary directory, and all its files.
+
+   The compiler will reside at 'C:\DJGPP'.
+   You will need to add 'C:\DJGPP\BIN' to your path.
+
+Install the MAME source files for DOS MAME, and ZVG patches:
+
+   Unzip 'mame081s.zip' into your DVMAME destination directory,
+   for instance C:\VMAME. Allow your UNZIP utility to create directories
+   as needed.
+      
+   Unzip 'dmame81s.zip' into the same directory, overwriting files if
+   asked to do so.
+
+   Unzip 'dvm81s.zip' into the same directory, also allowing it to overwrite
+   previous files.
+
+Use MAKE to re-compile DVMAME.EXE
+
+   From your DVMAME destination directory ('C:\VMAME' in the above example),
+   type:
+
+      make MAMEOS=msdos TARGET=vmame
+
+   Case is important.  Assuming everything intalled correctly this will create
+   a tiny compile of MAME that includes only the Vector Games.
+
+   If diskspace is critical (maybe you're loading DVMAME.EXE from a compactflash
+   card), use UPX to compress DVMAME.EXE:
+
+      upx -9 dvmame.exe
+
+Add the support .EXE files
+
+   Copy the file 'CWSDPMI.EXE' into the same directory as DVMAME.EXE.
+
+   Unzip 'vmenu01a.zip' into the same directory as DVMAME.EXE.
+   
+Setting up the configuration file for the ZVG.
+
+   To create a default configuration file type:
+
+      dvmame -cc
+
+   Now edit the file MAME.CFG and set:
+
+      frameskip = no
+      soundcard = ?            (Set to whatever type of sound card you are using)
+      zvg = 2                  (or 1 or 3)
+      zvg_artwork = yes
+      zvg_overlay = yes
+      zvg_menu = yes           (YES if you plan on using 'vm_menu', else set to NO)
+      skip_disclaimer = yes
+      skip_gameinfo = yes
+      skip_warnings = yes
+      rompath = ????           (Set to directory used to store your ROM files)
+      samplepath = ????        (Set to directory used to store your SAMPLE files)
+
+   I also prefer:
+
+      stretch = no
+
+That's it!

@@ -1,0 +1,36 @@
+To use Ian Boffin's Vector Menu front end, copy VM_MENU.EXE and VM.BAT
+to the same directory as DVMAME.EXE.
+
+Edit VM.BAT to select the type of soundcard you're using, etc.
+
+Currently VM.BAT is setup to display vector games on both the ZVG and the
+Raster monitor. You can change this to display on only the ZVG for faster
+framerates, however when you chose to display to the ZVG only, you do not
+have access to the normal MAME configuration windows. You should do your
+configurations before turning off the raster display. The options are:
+
+   -ZVG 0   = Do not use the ZVG.
+   -ZVG 1   = Display on both ZVG and Raster monitors.
+   -ZVG 2   = Use the ZVG only (No raster display).
+   -ZVG 3   = Vectors only on ZVG, raster used for menus (slower than '-ZVG 2')
+   
+Changing the resolution will also significantly change the framerates when
+displaying to a Raster Monitor.  To allow fast framerates, and also allow
+MAME's on screen displays, try setting the resolution to "-r 320x200", and
+use "-ZVG 1" to enable both the ZVG and Raster monitors.
+
+After all of the above type:
+
+   VM_MENU
+   
+To start the Vector Menu.
+
+The key commands are:
+
+   Left or Up      = Move Menu selection UP
+   Right or Down   = Move menu selection DOWN
+   P3 (Hyperspace) = Toggle between Manufacturer and Game select menus
+   Start2          = Toggle through Game Revisions
+   Start1          = Select Game to play
+
+   ESC             = Return to DOS

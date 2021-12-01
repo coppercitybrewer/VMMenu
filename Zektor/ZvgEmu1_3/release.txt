@@ -1,0 +1,32 @@
+Version 1.3
+-----------
+* Added 90, 180, and 270 degree rotation
+* All colors have even weight
+* Fixed crashing with pressing of F5, F7, and F10
+* Fixed "-noraster" so it actually works
+
+
+Version 1.2
+-----------
+* Added a set intensity of 0x100 in the VUI so that intensity of a given
+  game will not affect the menu intensity
+* Modified all palettes on all games so that if -color isn't given, no
+  black and white games are displayed in color (I.E. Asteroids Deluxe,
+  Battlezone, Star Castle, etc...)
+* Added a feature to the UI. Pressing the first letter of any game will
+  "warp" the UI's selector to the next matching game
+
+
+Version 1.1
+-----------
+* Added a reporting mechanism to the user when a bad command line option is
+  provided.
+* Readded -color option to force color operation
+* Added DOS version
+* Modified Windows version to emit wzvgemu.exe and DOS version to emit
+  dzvgemu.exe
+
+
+Version 1.0
+-----------
+* Initial revision

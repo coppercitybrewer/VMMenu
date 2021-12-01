@@ -1,0 +1,213 @@
+Readme file for VectorMAME 0.81 SDK Version 1.1a
+
+Installation Instruction for Setting up VectorMAME.
+
+These instruction assume the "D:" drive is your CD rom, if not,
+substitute the D: with your CD rom's drive letter.
+
+These instruction assume the "C:" drive is your Harddisk, if not,
+substitute the C: with your Harddisk's drive letter.
+
+To run VectorMAME on your DOS PC do the following:
+
+   XCOPY D:\dvmame081s11a\ C:\VMAME\ /s /e
+   
+You will need to then copy your ROM images to the \VMAME\ROMS directory
+and your samples to \VMAME\SAMPLES directory, or use the MAME command line
+switches to point to your own directories.
+
+-----------------------------------------------------------------------
+
+                       Running VectorMAME
+                       ------------------
+
+The file MAME.CFG has been included, this file has been setup with
+its parameters optimized for VectorMAME. It displays to only the
+Raster Monitor by default. Once VectorMAME is running properly, and
+you've setup a 'ZVGPORT=' variable (see below), use the -ZVG option
+to turn on the ZVG display.
+
+A new parameter '-ZVG n' has been added to the command line of DVMAME:
+
+   -zvg 0  = Do not use the ZVG
+   -zvg 1  = Use both the ZVG and Raster Display
+   -zvg 2  = Use only the ZVG display
+   -zvg 3  = Vector only displayed on ZVG, raster menu still functional
+   
+(For more info see the section below called: "The -ZVG Command Line Option")
+   
+A new environment variable must be setup before using the ZVG:
+
+   set ZVGPORT=Pxxx Dx[,t] Ix Mx
+   
+   Where:
+      Pxxx = ECP port address (in HEX).
+      Dx,t = DMA channel of port (the ',t' is optional).
+      Ix   = IRQ of the port.
+      Mx   = Monitor type.
+      
+(For more info on "ZVGPORT=", see the following section.)
+  
+---------------------------------------------------------------
+   
+               The 'ZVGPORT=' Environment Variable
+               -----------------------------------
+               
+The ZVG device drivers obtain their parallel port information from
+the environment variable 'ZVGPORT='.  This variable indicates the
+address of the ECP connected to the ZVG, it indicates the DMA channel
+and the IRQ level used, and it indicates the type of monitor connected
+to the ZVG.  To setup the 'ZVGPORT=' environment variable, type the
+following from the DOS command prompt, or add it to your AUTOEXEC.BAT
+file:
+
+   set ZVGPORT=Pxxx Dx[,x] Ix Mx
+   
+   Where:
+      Pxxx   = The address of the ECP port in hex.
+            
+      Dx[,t] = The DMA channel the ECP port is set to, and the type
+               of DMA to use (the ',t' is optional and defaults
+               to '1' if not given).
+               
+      Ix     = The level of interrupt used by the ECP port.
+      
+      Mx     = The type of monitor connected to the ZVG.
+      
+     
+Pxxx
+----
+The port address of the ECP is given by the 'Pxxx' parameter.
+'xxx' is the address used by the ECP port in hexidecimal.  The best
+way to determine the address is to go into your PC's BIOS setup menu
+(Many PC's require you to hold down the DEL key while booting to get
+to this screen, though your PC may differ.) Once in the BIOS setup
+menu verify that your parallel port is set to the ECP mode. Write down
+the address, DMA and IRQ settings. Use these setting to setup the
+'ZVGPORT=' parameters.
+
+
+Dx[,t]
+------
+The 'Dx' parameter indicates the DMA level, the optional ',t' extension
+indicates the type of DMA to use, and is only needed in the off chance the
+default settings do not work.
+
+The 'x' DMA value is a number between 0 and 3 and indicates the DMA level
+of the ECP port connected to the PC.
+
+The ',t' value is optional and is a number between 0 and 2.
+
+   0 = No DMA, this will cause the ZVG to run slower. Use as a last resort.
+
+   1 = Normal DMA mode. This is the default if not given.
+   
+   2 = Single Mode DMA. This should be tried only if the default settings
+       don't work. Some older PC's may need this setting.
+       
+
+Ix
+--
+The 'Ix' parameter indicates the Interrupt level used by the ZVG. Set this
+to the interrupt level given by your BIOS.
+
+
+Mx
+--
+The 'Mx' command tells the ZVG what type of monitor you are using so that
+it can do Color to B&W conversions, and flip the screen if neccassary.
+
+The 'x' value indicates the type of monitor is determined by adding the
+following values together:
+
+   1  = Flip X axis
+   2  = Flip Y axis
+   4  = Use spot kill logic
+   8  = B&W Monitor connected to ZVG.
+   16 = Disable Overscanning.
+   
+For a B&W monitor that incorporates a spotkiller:
+
+   4 (spotkiller) + 8 (B&W) = 12 = M12
+   
+So M12 would be used to drive such a monitor.
+
+For a similar color monitor:
+
+   4 (spotkiller) = M4
+   
+So M4 would be used to drive a color monitor that incorporates a
+spotkiller.
+
+***** EXAMPLES *****
+--------------------
+
+ECP Address = 378, DMA = 3, Interrupt = 7, WG Monitor:
+
+    set ZVGPORT=P378 D3 I7 M4
+    
+This indicates the ECP is connected to address 378, and uses DMA
+channel 3, and IRQ 7, and is connected to a color Monitor that
+incorporates a spotkiller.
+
+ECP Address = 378, DMA = 3 (Default Mode), Interrupt = 7, WG Monitor:
+
+    set ZVGPORT=P378 D3,2 I7 M4
+    
+Same as above, but attempts to use DMA mode 2 (Single Mode), on the
+assumption the default DMA mode was not working.
+
+ECP Address = 378, DMA = 3 (disabled), Interrupt = 7, WG Monitor:
+
+    set ZVGPORT=P378 D3,0 I7 M4
+    
+Same as above, but does not use DMA. This will slow down the speed
+at which the ZVG can draw vectors and may cause the framerates to
+drop. However some PC's might not support DMA and this option can
+allow them to work with a ZVG.
+
+ECP Address = 378, DMA = 3 (Default Mode), Interrupt = 7, G05 Monitor:
+
+    set ZVGPORT=P378 D3 I7 M12
+    
+Same as first example but indicates a B&W monitor is being used.
+Here's a list of common monitor types and their numbers:
+
+    M4  = Color Monitors (G08's, WG's, Amplifones)
+    M12 = B&W Monitors (G05's, 19V2000's)
+    M29 = The Vectrex Monitor.
+
+-----------------------------------------------------------------------------
+
+   
+                    The -ZVG Command Line Option
+                    ----------------------------
+                    
+The parameter enables the ZVG display board. You can display to both
+the Raster Monitor and the ZVG, or just the ZVG, or disable the ZVG
+display only to the Raster Monitor. Displaying to the ZVG only, can
+significantly speed up framerates on some computers, however when you
+choose to display to the ZVG only, you do not have access to the normal
+MAME configuration windows. You should do your configurations before
+turning off the raster display. The options are:
+
+   -ZVG 0   = Do not use the ZVG.
+   -ZVG 1   = Display on both ZVG and Raster monitors.
+   -ZVG 2   = Use the ZVG only (No raster display).
+   -ZVG 3   = Display vectors on ZVG only, raster menus still work.
+   
+The ZVG command is also available as a parameter in MAME.CFG under the
+[config] option, for instance:
+
+   [config]
+   zvg = 1
+   
+would display to both the ZVG and Raster Monitor.
+
+Changing the resolution can also help with the framerates when displaying
+to a Raster Monitor. To allow faster framerates, and also allow MAME's on
+screen displays, try setting the resolution to "-r 320x200", and use
+"-ZVG 1" to enable both the ZVG and Raster monitors.
+
+The fastest option is '-ZVG 2' this displays nothing to the raster screeen
+which is one of MAME's biggest bottle necks when emulating vector games.

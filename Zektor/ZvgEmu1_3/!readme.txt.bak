@@ -1,0 +1,179 @@
+INSTALLATION:
+-------------
+Unzip the contents of this zip file into one directory. There is no setup or
+other installation needed.
+
+On the ZVG, the jump COLOR must be removed from J3 on the ZVG. (COLOR is a
+misprint, this jumper changes the protocol used to talk with the ZVG. ZVGEmu
+uses a simpler protocol and must have the COLOR jumper removed.) Power must
+be cycled on the ZVG after removing the COLOR jumper.
+
+==============================================================================
+
+COMMAND LINE OPTIONS:
+---------------------
+When you launch the first time, if you don't specify a "-romdir", it'll
+prompt you with a tree dialog for where your roms are and will never
+prompt you again. Here are the command line options:
+
+-romdir d:\roms\file
+
+Specify the ROM directory.
+
+-zvg
+
+Turn on ZVG output. 
+
+-dib
+
+Turn on "device independent bitmap" mode. This causes ZVGEmu to run in
+windowed mode.
+
+-raster
+
+Turn on rasterized version of the vectors being displayed. This is a
+sticky option and will be remembered the next time you run ZVGEmu.
+
+-noraster
+
+Turn off rasterized version of the vectors being displayed. The onscreen
+display functions will still work. This is a sticky option and will be
+remembered the next time you run ZVGEmu.
+
+-color
+
+Drive all 3 color guns. Without this option, it is assumed B&W mode.
+
+-nojoy
+
+Turn off joystick support. Joystick support is enabled by default.
+
+-nomouse
+
+Turn off mouse support. Mouse support is enabled by default.
+
+-g "game name"
+
+Run a particular game (be sure to put the game's name in double quotes as
+shown above!). The current list of games is as follows:
+
+Asteroids
+Major Havoc
+Return To Vax
+Space Duel
+Gravitar
+Black Widow
+Tempest
+Tempest Tubes
+Battlezone
+Red Baron
+Asteroids Deluxe
+Lunar Lander
+Star Castle
+Tail Gunner
+Ripoff
+Sundance
+Space Wars
+Barrier
+War Of The Worlds
+Boxing Bugs
+Demon
+Solar Quest
+Armor Attack
+Speed Freak
+Warrior
+Star Hawk
+Omega Race
+Star Wars
+Quantum
+
+==============================================================================
+
+RUN TIME KEY COMMANDS:
+----------------------
+While in game, the following keys perform the following functions:
+
+   Pause
+
+Pause the game. This will currently stop ZVG output as well.
+
+   F5
+
+Bring up processor statistics. Hit again and an FPS count is displayed.
+Hit again and it goes away.
+
+   ` [The backwards single quote key]
+
+Bring up per game adjustment item at bottom of screen. This is displayed
+regardless of whether or not -noraster is provided. Once in this mode, the
+following keys take the following actions:
+
+   Up arrow
+
+Move up one menu item
+
+   Down arrow
+
+Move down one menu item
+
+   Right arrow
+
+Increase/change menu item selection
+
+   Left arrow
+
+Decrease/change menu item selection
+
+   Home
+
+Set back to default
+
+Hitting the ` again will bring the onscreen display menu back down again.
+
+==============================================================================                           
+
+ROMs:
+-----
+Create a subdirectory 'roms'
+Copy all your ROM zip files to this directory. The ROMs should be named like this:
+
+tempest.zip
+astdelux.zip
+asteroid.zip
+sundance.zip
+starcas.zip
+spacduel.zip
+llander.zip
+gravitar.zip
+bwidow.zip
+bzone.zip
+redbaron.zip
+ripoff.zip
+tailg.zip
+spacewar.zip
+barrier.zip
+wotw.zip
+boxingb.zip
+demon.zip
+solarq.zip
+armora.zip
+speedfrk.zip
+warrior.zip
+starhawk.zip
+mhavoc.zip
+omega.zip
+starwars.zip
+quantum.zip
+omegrace.zip
+
+==============================================================================
+
+STARTING THE PROGRAM:
+---------------------
+To run the DOS ZVG emulator, type 'run_bw' for B&W monitors, or 'run_co' for
+color monitors. This calls a DOS batch file that sets the correct environment
+variables for DZVGEMU.EXE, and adds the command line options for a ZVG with
+a B&W or color monitor attached.
+
+Have fun!
+
