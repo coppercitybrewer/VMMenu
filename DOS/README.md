@@ -12,7 +12,9 @@ Download an XP vdi image for VirtualBox
 
 Click New
 Name the virutal machine
+
 Type: Microsoft Windows
+
 Version: Windows XP (64-bit)
 
 Next
