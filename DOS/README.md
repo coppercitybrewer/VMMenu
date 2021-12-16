@@ -69,3 +69,7 @@ Install
 https://github.com/joncampbell123/dosbox-x
 
 DOSBox-X version 0.83.19
+
+sudo flatpak install flathub com.dosbox_x.DOSBox-X
+
+flatpak run com.dosbox_x.DOSBox-X
