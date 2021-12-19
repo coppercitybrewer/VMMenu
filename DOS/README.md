@@ -70,6 +70,24 @@ https://github.com/joncampbell123/dosbox-x
 
 DOSBox-X version 0.83.19
 
+Set a directory to mount for the .exes and the roms
+
+/home/something/zektorvm
+
 sudo flatpak install flathub com.dosbox_x.DOSBox-X
 
 flatpak run com.dosbox_x.DOSBox-X
+
+
+Set the parallel port in the configuration tool to the location
+of the parallel port of the system
+
+reallpt realport:/dev/parport0
+
+Set the ZVGPORT
+
+Example for WG Monitor
+set ZVGPORT=P378 D3 I7 M4
+
+
+Acquire roms and put them in a roms/ folder wherever dvmame and vmmenu are located
