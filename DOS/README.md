@@ -70,19 +70,21 @@ https://github.com/joncampbell123/dosbox-x
 
 DOSBox-X version 0.83.19
 
-Set a directory to mount for the .exes and the roms
-
-/home/something/zektorvm
-
 sudo flatpak install flathub com.dosbox_x.DOSBox-X
 
 flatpak run com.dosbox_x.DOSBox-X
 
 
+Set a directory to mount for the .exes and the roms
+
+/home/something/zektorvm
+
 Set the parallel port in the configuration tool to the location
 of the parallel port of the system
 
 reallpt realport:/dev/parport0
+
+sudo usermod -a -G lp username
 
 Set the ZVGPORT
 
