@@ -79,6 +79,17 @@ Set a directory to mount for the .exes and the roms
 
 /home/something/zektorvm
 
+
+F12 + c to enter the configuration tool,
+
+Edit Autoexec
+
+@ECHO OFF
+
+MOUNT C /home/something/zektorvm
+
+C:
+
 Set the parallel port in the configuration tool to the location
 of the parallel port of the system
 
